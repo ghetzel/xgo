@@ -312,6 +312,9 @@ func compile(image string, config *ConfigFlags, flags *BuildFlags, folder string
 		"-e", fmt.Sprintf("FLAG_BUILDMODE=%s", flags.Mode),
 		"-e", "TARGETS=" + strings.Replace(strings.Join(config.Targets, " "), "*", ".", -1),
 	}
+
+	args = append(args, []string{"-e", "GO111MODULE=on"}...)
+
 	if usesModules {
 		fmt.Println("Go modules enabled")
 
