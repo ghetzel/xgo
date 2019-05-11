@@ -313,6 +313,8 @@ func compile(image string, config *ConfigFlags, flags *BuildFlags, folder string
 		"-e", "TARGETS=" + strings.Replace(strings.Join(config.Targets, " "), "*", ".", -1),
 	}
 	if usesModules {
+		fmt.Println("Go modules enabled")
+
 		args = append(args, []string{"-e", "GO111MODULE=on"}...)
 		args = append(args, []string{"-v", os.Getenv("GOPATH") + ":/go"}...)
 
