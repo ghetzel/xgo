@@ -243,6 +243,10 @@ func compile(image string, config *ConfigFlags, flags *BuildFlags, folder string
 		_, err := os.Stat(modFile)
 		usesModules = !os.IsNotExist(err)
 
+		if os.Getenv("GO111MODULE") == "on" {
+			usesModules = true
+		}
+
 		// Iterate over all the local libs and export the mount points
 		if os.Getenv("GOPATH") == "" && !usesModules {
 			log.Fatalf("No $GOPATH is set or forwarded to xgo")
